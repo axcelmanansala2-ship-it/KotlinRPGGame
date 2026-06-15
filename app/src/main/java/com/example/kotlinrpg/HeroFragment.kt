@@ -49,7 +49,7 @@ class HeroFragment : Fragment() {
             setTextColor(0xFF888899.toInt())
             textSize = 11f
             typeface = android.graphics.Typeface.MONOSPACE
-            lineSpacingMultiplier = 1.5f
+            setLineSpacing(0f, 1.5f)
         }
         // HP bar
         val hpFrame = FrameLayout(ctx).apply {
