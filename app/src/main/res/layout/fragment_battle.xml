@@ -3,65 +3,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#050510">
+    android:background="#04040F">
 
     <TextView
-        android:id="@+id/tvIdleInfo"
+        android:id="@+id/tvWave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Zone: —  •  Idle: —"
-        android:textColor="#556655"
+        android:text="Wave 1"
+        android:textColor="#AA44FF"
         android:fontFamily="monospace"
-        android:textSize="10sp"
-        android:padding="5dp"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingTop="5dp"
+        android:paddingBottom="3dp"
+        android:letterSpacing="0.12"
         android:background="#08080F"/>
 
     <com.example.kotlinrpg.BattleView
         android:id="@+id/battleView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.2"/>
+        android:layout_weight="2.4"/>
 
     <TextView
         android:id="@+id/tvStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lv.1 Hero  HP:100/100"
+        android:text=""
         android:textColor="#44FF88"
         android:fontFamily="monospace"
-        android:textSize="10sp"
-        android:textStyle="bold"
+        android:textSize="9sp"
         android:paddingHorizontal="8dp"
-        android:paddingVertical="5dp"
-        android:background="#0D0D1A"
-        android:singleLine="false"/>
+        android:paddingVertical="4dp"
+        android:background="#0C0C1A"/>
 
     <ScrollView
         android:id="@+id/svLog"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.85"
-        android:background="#080812"
-        android:padding="8dp">
+        android:layout_weight="0.65"
+        android:background="#070712"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp">
         <TextView
             android:id="@+id/tvLog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#AAAACC"
+            android:textColor="#7788AA"
             android:fontFamily="monospace"
-            android:textSize="11sp"
-            android:lineSpacingMultiplier="1.5"/>
+            android:textSize="10sp"
+            android:lineSpacingMultiplier="1.4"/>
     </ScrollView>
 
     <TextView
         android:id="@+id/btnPotion"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="40dp"
         android:text="POTION (5)"
         android:textSize="13sp"
         android:textStyle="bold"
         android:fontFamily="monospace"
         android:textColor="#22CC66"
         android:gravity="center"
-        android:background="#0D1A0D"/>
+        android:background="#0C180C"/>
 </LinearLayout>

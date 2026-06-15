@@ -16,113 +16,111 @@ class BattleFragment : Fragment() {
     private lateinit var tvLog: TextView
     private lateinit var svLog: ScrollView
     private lateinit var tvStatus: TextView
-    private lateinit var tvIdleInfo: TextView
+    private lateinit var tvWave: TextView
     private lateinit var btnPotion: TextView
     private val log = StringBuilder()
-    private var currentEnemyIdx = 0
+    private var waveIndex = 0
     private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val root = inflater.inflate(R.layout.fragment_battle, container, false)
         battleView = root.findViewById(R.id.battleView)
-        tvLog = root.findViewById(R.id.tvLog)
-        svLog = root.findViewById(R.id.svLog)
-        tvStatus = root.findViewById(R.id.tvStatus)
-        tvIdleInfo = root.findViewById(R.id.tvIdleInfo)
-        btnPotion = root.findViewById(R.id.btnPotion)
+        tvLog      = root.findViewById(R.id.tvLog)
+        svLog      = root.findViewById(R.id.svLog)
+        tvStatus   = root.findViewById(R.id.tvStatus)
+        tvWave     = root.findViewById(R.id.tvWave)
+        btnPotion  = root.findViewById(R.id.btnPotion)
 
-        setupBattleView()
+        setupBattleCallbacks()
         btnPotion.setOnClickListener { usePotion() }
-        startNewEnemy()
+
+        battleView.post {
+            battleView.loadParty()
+            startWave()
+        }
         updateStatus()
         return root
     }
 
-    private fun setupBattleView() {
+    private fun setupBattleCallbacks() {
         battleView.onBattleLog = { msg ->
+            activity?.runOnUiThread { appendLog(msg) }
+        }
+        battleView.onStatsChanged = {
+            activity?.runOnUiThread { updateStatus() }
+        }
+        battleView.onWaveCleared = { _, _ ->
             activity?.runOnUiThread {
-                log.append(msg).append("\n")
-                tvLog.text = log.toString()
-                svLog.post { svLog.fullScroll(View.FOCUS_DOWN) }
+                handler.postDelayed({ nextWave() }, 600)
             }
         }
-        battleView.onStatsChanged = { activity?.runOnUiThread { updateStatus() } }
-        battleView.onEnemyDefeated = { exp, gold ->
+        battleView.onAllDefeated = {
             activity?.runOnUiThread {
-                appendLog("▶ +$exp EXP  +$gold Gold")
-                GameState.save()
-                updateStatus()
-                handler.postDelayed({ loadNextEnemy() }, 1200)
-            }
-        }
-        battleView.onPlayerDefeated = {
-            activity?.runOnUiThread {
-                appendLog("✦ Defeated! Recovering...")
-                GameState.resetHpPartial()
-                GameState.save()
-                updateStatus()
-                handler.postDelayed({ startNewEnemy() }, 2500)
-            }
-        }
-        battleView.onLevelUp = {
-            activity?.runOnUiThread {
-                appendLog("★ ★ LEVEL UP! Now Lv.${GameState.heroLevel} ★ ★")
-                appendLog("  HP: ${GameState.heroMaxHp}  ATK: ${GameState.heroAtk}  DEF: ${GameState.heroDef}")
+                appendLog("☠ Party defeated! Recovering...")
+                handler.postDelayed({
+                    battleView.loadParty()
+                    waveIndex = 0
+                    startWave()
+                    updateStatus()
+                }, 2500)
             }
         }
     }
 
-    private fun startNewEnemy() {
+    private fun startWave() {
         val zone = GameState.currentZone()
-        currentEnemyIdx = 0
-        val enemy = zone.enemies[currentEnemyIdx]
-        appendLog("=== ${zone.name} ===")
-        appendLog("A wild ${enemy.name} appears!")
-        battleView.startBattle(enemy)
-        updateStatus()
+        val enemies = zone.enemies
+        if (enemies.isEmpty()) return
+        val waveEnemies = buildList {
+            val e1 = enemies[waveIndex % enemies.size]
+            add(e1)
+            if (enemies.size > 1) add(enemies[(waveIndex + 1) % enemies.size])
+            if (enemies.size > 2) add(enemies[(waveIndex + 2) % enemies.size])
+        }
+        battleView.loadEnemyWave(waveEnemies)
+        appendLog("--- Wave ${waveIndex + 1}: ${zone.name} ---")
+        waveEnemies.forEach { appendLog("  ▸ ${it.name} (HP:${it.maxHp})") }
+        updateWaveInfo()
     }
 
-    private fun loadNextEnemy() {
-        val zone = GameState.currentZone()
-        currentEnemyIdx = (currentEnemyIdx + 1) % zone.enemies.size
-        val enemy = zone.enemies[currentEnemyIdx]
-        appendLog("--- ${enemy.name} appears! ---")
-        battleView.startBattle(enemy)
+    private fun nextWave() {
+        waveIndex++
+        battleView.restoreHeroHp()
+        startWave()
         updateStatus()
     }
 
     private fun usePotion() {
-        if (GameState.potions <= 0) { appendLog("No potions left!"); return }
-        val heal = (GameState.heroMaxHp * 0.35).toInt()
-        val actual = minOf(heal, GameState.heroMaxHp - GameState.heroHp)
-        if (actual <= 0) { appendLog("HP is already full!"); return }
-        GameState.heroHp += actual
+        if (GameState.potions <= 0) { appendLog("No potions!"); return }
         GameState.potions--
-        appendLog("🧪 Potion! +$actual HP  (${GameState.potions} left)")
+        battleView.loadParty()
+        appendLog("🧪 Potions used! Party healed! (${GameState.potions} left)")
         GameState.save()
         updateStatus()
     }
 
     private fun appendLog(msg: String) {
         log.append(msg).append("\n")
-        if (log.length > 2000) log.delete(0, 500)
+        if (log.length > 2000) log.delete(0, 600)
         tvLog.text = log.toString()
         svLog.post { svLog.fullScroll(View.FOCUS_DOWN) }
     }
 
     private fun updateStatus() {
-        val gs = GameState
-        tvStatus.text = "Lv.${gs.heroLevel} ${gs.heroClass.displayName}   HP:${gs.heroHp}/${gs.heroMaxHp}   ATK:${gs.heroAtk}   DEF:${gs.heroDef}   Gold:${gs.gold}"
-        btnPotion.text = "POTION (${gs.potions})"
-        btnPotion.alpha = if (gs.potions > 0) 1f else 0.4f
-        val zone = gs.currentZone()
-        tvIdleInfo.text = "Zone: ${zone.name}  •  Idle: +${(gs.currentZoneIndex + 1) * 3} gold/10s  •  Kills: ${gs.totalKills}"
+        val zone = GameState.currentZone()
+        tvStatus.text = "Zone: ${zone.name}  •  Kills: ${GameState.totalKills}  •  Gold: ${GameState.gold}  •  Lv.${GameState.playerLevel}"
+        btnPotion.text = "POTION (${GameState.potions})"
+        btnPotion.alpha = if (GameState.potions > 0) 1f else 0.4f
     }
 
-    fun onResumeFromPager() { battleView.resumeBattle() }
-    fun onPauseFromPager() { battleView.stopBattle() }
+    private fun updateWaveInfo() {
+        tvWave.text = "Wave ${waveIndex + 1}  •  ${GameState.currentZone().name}"
+    }
+
+    fun onResumeFromPager() { /* battle auto-runs via handler in BattleView */ }
+    fun onPauseFromPager() { /* nothing, idle continues */ }
 
     override fun onResume() { super.onResume(); updateStatus() }
-    override fun onPause() { super.onPause(); battleView.stopBattle(); GameState.save() }
+    override fun onPause() { super.onPause(); GameState.save() }
     override fun onDestroyView() { super.onDestroyView(); handler.removeCallbacksAndMessages(null) }
 }

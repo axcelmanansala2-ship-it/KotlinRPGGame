@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#050510"
-    android:padding="16dp">
+    android:background="#050510">
 
     <TextView
         android:layout_width="match_parent"
@@ -16,104 +15,160 @@
         android:fontFamily="monospace"
         android:gravity="center"
         android:letterSpacing="0.16"
-        android:paddingBottom="12dp"/>
+        android:paddingTop="8dp"
+        android:paddingBottom="6dp"
+        android:background="#0D0D18"/>
 
     <TextView
         android:id="@+id/tvGold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Gold: 0"
-        android:textSize="18sp"
+        android:textSize="17sp"
         android:textStyle="bold"
         android:textColor="#FFDD00"
         android:fontFamily="monospace"
         android:gravity="center"
-        android:paddingBottom="14dp"/>
+        android:paddingVertical="8dp"/>
 
+    <!-- Hero tabs -->
+    <LinearLayout
+        android:id="@+id/heroTabs"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:orientation="horizontal"
+        android:background="#0A0A14"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Upgrade buttons row 1 -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:orientation="horizontal"
-        android:layout_marginBottom="8dp">
-
-        <TextView
-            android:id="@+id/btnBuyPotion"
-            android:layout_width="0dp"
-            android:layout_height="46dp"
-            android:layout_weight="1"
-            android:text="POTION\n30g"
-            android:textSize="11sp"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:textColor="#22CC66"
-            android:gravity="center"
-            android:background="#0A180A"
-            android:layout_marginEnd="4dp"
-            android:lineSpacingMultiplier="1.2"/>
-
-        <TextView
-            android:id="@+id/btnRest"
-            android:layout_width="0dp"
-            android:layout_height="46dp"
-            android:layout_weight="1"
-            android:text="REST\n20g"
-            android:textSize="11sp"
-            android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:textColor="#6688CC"
-            android:gravity="center"
-            android:background="#0A0A18"
-            android:lineSpacingMultiplier="1.2"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="12dp">
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="4dp">
 
         <TextView
             android:id="@+id/btnUpgradeAtk"
             android:layout_width="0dp"
-            android:layout_height="46dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="ATK UP\n+2"
+            android:text="ATK+2"
             android:textSize="11sp"
             android:textStyle="bold"
             android:fontFamily="monospace"
             android:textColor="#CC4444"
             android:gravity="center"
             android:background="#180A0A"
-            android:layout_marginEnd="4dp"
-            android:lineSpacingMultiplier="1.2"/>
+            android:layout_marginEnd="3dp"/>
 
         <TextView
             android:id="@+id/btnUpgradeDef"
             android:layout_width="0dp"
-            android:layout_height="46dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="DEF UP\n+1"
+            android:text="DEF+1"
             android:textSize="11sp"
             android:textStyle="bold"
             android:fontFamily="monospace"
             android:textColor="#4488CC"
             android:gravity="center"
             android:background="#0A0A18"
-            android:layout_marginEnd="4dp"
-            android:lineSpacingMultiplier="1.2"/>
+            android:layout_marginEnd="3dp"/>
 
         <TextView
             android:id="@+id/btnUpgradeHp"
             android:layout_width="0dp"
-            android:layout_height="46dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="HP UP\n+20"
+            android:text="HP+20"
             android:textSize="11sp"
             android:textStyle="bold"
             android:fontFamily="monospace"
             android:textColor="#33CC55"
             android:gravity="center"
             android:background="#0A180A"
+            android:layout_marginEnd="3dp"/>
+
+        <TextView
+            android:id="@+id/btnLevelUp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="LVL UP"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:textColor="#FFDD00"
+            android:gravity="center"
+            android:background="#1A1400"/>
+    </LinearLayout>
+
+    <!-- Action buttons row 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:id="@+id/btnBuyPotion"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="POTION\n30g"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:textColor="#22CC66"
+            android:gravity="center"
+            android:background="#0A180A"
+            android:lineSpacingMultiplier="1.2"
+            android:layout_marginEnd="3dp"/>
+
+        <TextView
+            android:id="@+id/btnRest"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="REST\n25g"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:textColor="#6688CC"
+            android:gravity="center"
+            android:background="#0A0A18"
+            android:lineSpacingMultiplier="1.2"
+            android:layout_marginEnd="3dp"/>
+
+        <TextView
+            android:id="@+id/btnUnlockAssassin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="ASSASSIN\n300g"
+            android:textSize="9sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:textColor="#FF4488"
+            android:gravity="center"
+            android:background="#160010"
+            android:lineSpacingMultiplier="1.2"
+            android:layout_marginEnd="3dp"/>
+
+        <TextView
+            android:id="@+id/btnUnlockPriest"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="PRIEST\n280g"
+            android:textSize="9sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:textColor="#FFEE44"
+            android:gravity="center"
+            android:background="#161200"
             android:lineSpacingMultiplier="1.2"/>
     </LinearLayout>
 
@@ -122,14 +177,15 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#0A0A16"
-        android:padding="12dp">
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="8dp">
         <TextView
             android:id="@+id/tvInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#AAAACC"
             android:fontFamily="monospace"
-            android:textSize="12sp"
-            android:lineSpacingMultiplier="1.7"/>
+            android:textSize="11sp"
+            android:lineSpacingMultiplier="1.8"/>
     </ScrollView>
 </LinearLayout>

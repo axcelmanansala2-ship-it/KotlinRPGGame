@@ -12,17 +12,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         findViewById<TextView>(R.id.btnPlay).setOnClickListener {
-            if (GameState.isClassSelected) {
-                startActivity(Intent(this, GameActivity::class.java))
-            } else {
-                startActivity(Intent(this, CharacterSelectActivity::class.java))
-            }
-            finish()
+            startActivity(Intent(this, GameActivity::class.java)); finish()
         }
-
         findViewById<TextView>(R.id.btnNewGame).setOnClickListener {
-            startActivity(Intent(this, CharacterSelectActivity::class.java))
-            finish()
+            getSharedPreferences("rpg_save_v3", MODE_PRIVATE).edit().clear().apply()
+            GameState.init(this)
+            startActivity(Intent(this, GameActivity::class.java)); finish()
         }
     }
 }

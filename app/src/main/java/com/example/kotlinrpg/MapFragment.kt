@@ -4,50 +4,39 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 class MapFragment : Fragment() {
-
-    private lateinit var mapView: MapView
-    private lateinit var tvZoneInfo: TextView
-    private lateinit var btnExplore: TextView
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val root = inflater.inflate(R.layout.fragment_map, container, false)
-        mapView = root.findViewById(R.id.mapView)
-        tvZoneInfo = root.findViewById(R.id.tvZoneInfo)
-        btnExplore = root.findViewById(R.id.btnExplore)
+        val mapView  = root.findViewById<MapView>(R.id.mapView)
+        val tvInfo   = root.findViewById<TextView>(R.id.tvZoneInfo)
+        val btnEnter = root.findViewById<TextView>(R.id.btnExplore)
 
-        mapView.onZoneSelected = { zoneIdx ->
-            updateZoneInfo(zoneIdx)
+        mapView.onZoneSelected = { idx ->
+            updateInfo(tvInfo, btnEnter, idx)
         }
-
-        btnExplore.setOnClickListener {
+        btnEnter.setOnClickListener {
             (activity as? GameActivity)?.navigateTo(1)
         }
-
-        updateZoneInfo(GameState.currentZoneIndex)
+        updateInfo(tvInfo, btnEnter, GameState.currentZoneIndex)
         return root
     }
 
-    private fun updateZoneInfo(idx: Int) {
+    private fun updateInfo(tvInfo: TextView, btn: TextView, idx: Int) {
         val zone = GameState.ZONES[idx]
         val unlocked = GameState.isZoneUnlocked(idx)
         if (unlocked) {
-            tvZoneInfo.text = "${zone.name}\n${zone.enemies.size} enemy types  •  ${zone.description}"
-            btnExplore.visibility = View.VISIBLE
-            btnExplore.text = "[ ENTER ${zone.name.uppercase()} ]"
+            val idleGold = (idx + 1) * 4
+            tvInfo.text = "${zone.name}\n${zone.description}\n${zone.enemies.size} enemy types  •  +${idleGold} gold/10s idle"
+            btn.visibility = View.VISIBLE
+            btn.text = "[ ENTER ${zone.name.uppercase()} ]"
         } else {
-            tvZoneInfo.text = "${zone.name} — LOCKED\nRequires Level ${zone.unlockLevel}  (You are Lv.${GameState.heroLevel})"
-            btnExplore.visibility = View.GONE
+            tvInfo.text = "${zone.name} — LOCKED (Requires Player Level ${zone.unlockLevel})"
+            btn.visibility = View.GONE
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        updateZoneInfo(GameState.currentZoneIndex)
-    }
+    override fun onResume() { super.onResume(); view?.let { updateInfo(it.findViewById(R.id.tvZoneInfo), it.findViewById(R.id.btnExplore), GameState.currentZoneIndex) } }
 }

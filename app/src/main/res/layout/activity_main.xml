@@ -5,20 +5,20 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="28dp"
-    android:background="#050510">
+    android:background="#04040F">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="&#9760;"
-        android:textSize="64sp"
-        android:layout_marginBottom="8dp"/>
+        android:textSize="72sp"
+        android:layout_marginBottom="6dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DARK REALM"
-        android:textSize="36sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         android:textColor="#CC0033"
         android:fontFamily="monospace"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:text="Idle RPG"
         android:textSize="14sp"
-        android:textColor="#553355"
+        android:textColor="#441144"
         android:fontFamily="monospace"
         android:layout_marginBottom="6dp"/>
 
@@ -43,19 +43,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="6 Dark Zones to conquer\nAuto-battle idle progression\n3 Hero classes\nSliding screen navigation"
+        android:text="3-Hero Formation Battles\nAFK Idle Progression\n6 Dark Zones to Conquer\n5 Hero Classes to Unlock\nSlide Screen Navigation"
         android:textSize="12sp"
-        android:textColor="#6666AA"
+        android:textColor="#5555AA"
         android:fontFamily="monospace"
         android:gravity="center"
-        android:lineSpacingMultiplier="1.7"
+        android:lineSpacingMultiplier="1.8"
         android:layout_marginBottom="36dp"/>
 
     <TextView
         android:id="@+id/btnPlay"
-        android:layout_width="220dp"
-        android:layout_height="52dp"
-        android:text="CONTINUE"
+        android:layout_width="240dp"
+        android:layout_height="56dp"
+        android:text="&#9654;  CONTINUE"
         android:textSize="16sp"
         android:textStyle="bold"
         android:fontFamily="monospace"
@@ -66,22 +66,21 @@
 
     <TextView
         android:id="@+id/btnNewGame"
-        android:layout_width="220dp"
+        android:layout_width="240dp"
         android:layout_height="48dp"
         android:text="NEW GAME"
         android:textSize="14sp"
-        android:textStyle="bold"
         android:fontFamily="monospace"
-        android:textColor="#AA7799"
+        android:textColor="#886699"
         android:gravity="center"
         android:background="#880D0D18"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kotlin Edition  v2.0"
+        android:text="Kotlin Edition  v3.0"
         android:textSize="10sp"
-        android:textColor="#333344"
+        android:textColor="#222233"
         android:fontFamily="monospace"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="28dp"/>
 </LinearLayout>
