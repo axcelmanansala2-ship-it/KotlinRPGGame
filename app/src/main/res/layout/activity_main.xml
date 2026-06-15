@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_dark">
+
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- ── VIEW 0: TITLE SCREEN ─────────────────────────────── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp"
+            android:background="@color/bg_dark">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&#9876;"
+                android:textSize="72sp"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KOTLIN RPG"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                android:textColor="@color/gold"
+                android:letterSpacing="0.15"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A Simple Adventure"
+                android:textSize="15sp"
+                android:textColor="@color/text_dim"
+                android:layout_marginBottom="48dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You are a lone warrior.\nFight your way through 5 enemies\nand defeat the Ancient Dragon!"
+                android:textSize="14sp"
+                android:textColor="@color/text_light"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.5"
+                android:layout_marginBottom="48dp"/>
+
+            <Button
+                android:id="@+id/btnNewGame"
+                android:layout_width="220dp"
+                android:layout_height="58dp"
+                android:text="START GAME"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/red_primary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&#128122; Slime  &#128122; Goblin  &#128122; Orc\n&#128122; Dark Knight  &#128122; Dragon"
+                android:textSize="12sp"
+                android:textColor="@color/text_dim"
+                android:gravity="center"
+                android:layout_marginTop="32dp"/>
+        </LinearLayout>
+
+        <!-- ── VIEW 1: BATTLE SCREEN ────────────────────────────── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:background="@color/bg_battle">
+
+            <TextView
+                android:id="@+id/tvStageInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stage 1 / 5"
+                android:textColor="@color/gold"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Monster Panel -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.2"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@color/bg_panel"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/tvMonsterEmoji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&#128126;"
+                    android:textSize="64sp"/>
+
+                <TextView
+                    android:id="@+id/tvMonsterName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Slime"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/hp_red"
+                    android:layout_marginTop="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvMonsterHp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HP: 40 / 40"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_light"
+                    android:layout_marginTop="2dp"/>
+
+                <ProgressBar
+                    android:id="@+id/progressMonsterHp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="6dp"
+                    android:progressTint="@color/hp_red"
+                    android:progressBackgroundTint="#333333"/>
+            </LinearLayout>
+
+            <!-- Battle Log -->
+            <ScrollView
+                android:id="@+id/scrollBattleLog"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.8"
+                android:background="#0a0a14"
+                android:padding="8dp"
+                android:layout_marginVertical="8dp">
+
+                <TextView
+                    android:id="@+id/tvBattleLog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_light"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace"
+                    android:lineSpacingMultiplier="1.4"/>
+            </ScrollView>
+
+            <!-- Player Panel -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/bg_panel"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/tvPlayerHp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HP: 100 / 100"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/hp_green"/>
+
+                <ProgressBar
+                    android:id="@+id/progressPlayerHp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="4dp"
+                    android:progressTint="@color/hp_green"
+                    android:progressBackgroundTint="#333333"/>
+
+                <TextView
+                    android:id="@+id/tvPlayerStats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lv.1   ATK:15   DEF:5   EXP:0/100"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_dim"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- Potions label -->
+            <TextView
+                android:id="@+id/tvPotions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Potions: 3"
+                android:textSize="12sp"
+                android:textColor="#a8d8ea"
+                android:layout_marginBottom="6dp"/>
+
+            <!-- Action Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <Button
+                    android:id="@+id/btnAttack"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:text="ATTACK"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#c0392b"
+                    android:layout_marginEnd="3dp"/>
+
+                <Button
+                    android:id="@+id/btnDefend"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:text="DEFEND"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#2980b9"
+                    android:layout_marginEnd="3dp"/>
+
+                <Button
+                    android:id="@+id/btnHeal"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:text="HEAL"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#27ae60"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ── VIEW 2: STAGE CLEAR ──────────────────────────────── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="28dp"
+            android:background="#0d1b2a">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&#11088;"
+                android:textSize="64sp"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:id="@+id/tvStageClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="STAGE CLEAR!"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="@color/gold"
+                android:layout_marginBottom="24dp"/>
+
+            <TextView
+                android:id="@+id/tvStageClearInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="16sp"
+                android:textColor="@color/text_light"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.6"
+                android:layout_marginBottom="40dp"/>
+
+            <Button
+                android:id="@+id/btnNextStage"
+                android:layout_width="220dp"
+                android:layout_height="56dp"
+                android:text="Next Battle"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/red_primary"/>
+        </LinearLayout>
+
+        <!-- ── VIEW 3: GAME OVER ────────────────────────────────── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="28dp"
+            android:background="#1a0000">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&#128128;"
+                android:textSize="72sp"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GAME OVER"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:textColor="#ff4444"
+                android:layout_marginBottom="24dp"/>
+
+            <TextView
+                android:id="@+id/tvGameOverMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="16sp"
+                android:textColor="@color/text_light"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.6"
+                android:layout_marginBottom="40dp"/>
+
+            <Button
+                android:id="@+id/btnRetry"
+                android:layout_width="200dp"
+                android:layout_height="56dp"
+                android:text="RETRY"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:backgroundTint="#8b0000"/>
+        </LinearLayout>
+
+        <!-- ── VIEW 4: VICTORY ──────────────────────────────────── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="28dp"
+            android:background="#0a2400">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&#127942;"
+                android:textSize="72sp"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="YOU WIN!"
+                android:textSize="42sp"
+                android:textStyle="bold"
+                android:textColor="@color/gold"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The Ancient Dragon falls!\nYou are a true hero of legend!"
+                android:textSize="18sp"
+                android:textColor="@color/text_light"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.5"
+                android:layout_marginBottom="48dp"/>
+
+            <Button
+                android:id="@+id/btnPlayAgain"
+                android:layout_width="220dp"
+                android:layout_height="56dp"
+                android:text="Play Again"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:backgroundTint="#1a7a00"/>
+        </LinearLayout>
+
+    </ViewFlipper>
+</LinearLayout>
