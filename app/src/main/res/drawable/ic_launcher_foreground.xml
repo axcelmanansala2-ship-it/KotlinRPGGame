@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Sword blade -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,10 L58,46 L98,50 L58,54 L54,90 L50,54 L10,50 L50,46 Z"/>
+    <!-- Cross guard -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M46,46 L62,46 L62,54 L46,54 Z"/>
+</vector>
