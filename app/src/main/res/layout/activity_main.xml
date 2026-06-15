@@ -4,72 +4,84 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="32dp"
-    android:background="#060618">
+    android:padding="28dp"
+    android:background="#050510">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="&#9876;"
-        android:textSize="72sp"
+        android:text="&#9760;"
+        android:textSize="64sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DARK REALM"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textColor="#CC0033"
+        android:fontFamily="monospace"
+        android:letterSpacing="0.18"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Idle RPG"
+        android:textSize="14sp"
+        android:textColor="#553355"
+        android:fontFamily="monospace"
+        android:layout_marginBottom="6dp"/>
+
+    <View
+        android:layout_width="200dp"
+        android:layout_height="1dp"
+        android:background="#33CC0033"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6 Dark Zones to conquer\nAuto-battle idle progression\n3 Hero classes\nSliding screen navigation"
+        android:textSize="12sp"
+        android:textColor="#6666AA"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.7"
+        android:layout_marginBottom="36dp"/>
+
+    <TextView
+        android:id="@+id/btnPlay"
+        android:layout_width="220dp"
+        android:layout_height="52dp"
+        android:text="CONTINUE"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:fontFamily="monospace"
+        android:textColor="#FFDD00"
+        android:gravity="center"
+        android:background="#CC1A0022"
         android:layout_marginBottom="12dp"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PIXEL RPG"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:textColor="#FFD700"
-        android:fontFamily="monospace"
-        android:letterSpacing="0.12"
-        android:layout_marginBottom="8dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Kotlin Edition"
-        android:textSize="15sp"
-        android:textColor="#8888AA"
-        android:fontFamily="monospace"
-        android:layout_marginBottom="40dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5 Enemies to defeat:"
-        android:textSize="13sp"
-        android:textColor="#AAAACC"
-        android:fontFamily="monospace"
-        android:layout_marginBottom="8dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Slime  &#8250;  Goblin  &#8250;  Skeleton\nDark Knight  &#8250;  Dragon"
-        android:textSize="13sp"
-        android:textColor="#8888AA"
-        android:fontFamily="monospace"
-        android:gravity="center"
-        android:lineSpacingMultiplier="1.6"
-        android:layout_marginBottom="48dp"/>
-
-    <Button
-        android:id="@+id/btnPlay"
+        android:id="@+id/btnNewGame"
         android:layout_width="220dp"
-        android:layout_height="60dp"
-        android:text="START GAME"
-        android:textSize="20sp"
+        android:layout_height="48dp"
+        android:text="NEW GAME"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:fontFamily="monospace"
-        android:backgroundTint="#CC2222"/>
+        android:textColor="#AA7799"
+        android:gravity="center"
+        android:background="#880D0D18"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Attack  |  Defend  |  Heal"
-        android:textSize="12sp"
-        android:textColor="#555577"
+        android:text="Kotlin Edition  v2.0"
+        android:textSize="10sp"
+        android:textColor="#333344"
         android:fontFamily="monospace"
-        android:layout_marginTop="28dp"/>
+        android:layout_marginTop="24dp"/>
 </LinearLayout>

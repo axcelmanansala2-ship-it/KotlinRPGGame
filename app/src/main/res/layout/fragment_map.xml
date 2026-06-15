@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#050510">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="WORLD MAP"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:textColor="#CC0033"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:letterSpacing="0.16"
+        android:paddingTop="8dp"
+        android:paddingBottom="6dp"
+        android:background="#0D0D18"/>
+
+    <com.example.kotlinrpg.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/tvZoneInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select a zone"
+        android:textColor="#AAAACC"
+        android:fontFamily="monospace"
+        android:textSize="11sp"
+        android:padding="10dp"
+        android:background="#0A0A16"
+        android:minLines="2"/>
+
+    <TextView
+        android:id="@+id/btnExplore"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:text="[ ENTER ZONE ]"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:fontFamily="monospace"
+        android:textColor="#FFDD00"
+        android:gravity="center"
+        android:background="#CC220033"
+        android:visibility="gone"/>
+</LinearLayout>

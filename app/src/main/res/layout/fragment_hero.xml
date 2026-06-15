@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#050510"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HERO STATUS"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="#CC0033"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:letterSpacing="0.16"
+        android:paddingBottom="14dp"/>
+
+    <TextView
+        android:id="@+id/tvHeroName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#FFDD00"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:paddingBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/tvHeroDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#7777AA"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:paddingBottom="14dp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#111122"
+        android:layout_marginBottom="4dp">
+        <View
+            android:id="@+id/hpBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#33CC33"
+            android:transformPivotX="0dp"/>
+    </FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HP"
+        android:textSize="9sp"
+        android:textColor="#447744"
+        android:fontFamily="monospace"
+        android:layout_marginBottom="8dp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#111122"
+        android:layout_marginBottom="4dp">
+        <View
+            android:id="@+id/expBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#AA6600"
+            android:transformPivotX="0dp"/>
+    </FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="EXP"
+        android:textSize="9sp"
+        android:textColor="#886633"
+        android:fontFamily="monospace"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvStats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#AAAACC"
+        android:fontFamily="monospace"
+        android:textSize="14sp"
+        android:lineSpacingMultiplier="1.9"
+        android:background="#0A0A16"
+        android:padding="14dp"/>
+</LinearLayout>
