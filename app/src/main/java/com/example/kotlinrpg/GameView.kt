@@ -8,7 +8,11 @@ import android.view.View
 import kotlin.math.*
 import kotlin.random.Random
 
-class GameView(context: Context) : View(context) {
+class GameView @JvmOverloads constructor(
+    context: Context,
+    attrs: android.util.AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : View(context, attrs, defStyleAttr) {
 
     companion object {
         // Hero
